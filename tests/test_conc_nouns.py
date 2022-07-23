@@ -18,6 +18,7 @@ def test_sanity():
 
 
 def test_conc_nouns1():
+    """Test 1."""
     text = """The mountains and rivers are scenery, and life is
         destined; no matter from a distance, miss each other.
         A greeting is my wish; take care of  my body and be
