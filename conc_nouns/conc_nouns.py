@@ -11,20 +11,20 @@ from logzero import logger
 from sklearn.linear_model import LogisticRegression
 
 try:
-    nlp = spacy.load("en_core_web_sm")  # !python -m spacy download en_core_web_md
+    nlp = spacy.load("en_core_web_md")  # !python -m spacy download en_core_web_md
 except Exception:
     try:
-        spacy.cli.download("en_core_web_sm")
+        spacy.cli.download("en_core_web_md")
     except Exception as exc:
         logger.error(exc)
         raise
     try:
-        nlp = spacy.load("en_core_web_sm")
+        nlp = spacy.load("en_core_web_md")
     except Exception as exc:
         logger.error(exc)
         raise
 
-classes = [1, 0]
+classes = ['concrete-noun', 'not-concrete-noun']
 # todo: add more examples
 train_set = [
     [
@@ -86,7 +86,10 @@ def conc_nouns(text: str) -> List[int]:
     for token in words:
         if token.pos_ in ["NOUN"]:
             _ = classes[classifier.predict([token.vector])[0]]
-            lst.append(_)
+            if _ in ["concrete-noun"]:
+                lst.append(1)
+            else:
+                lst.append(0)
         else:
             lst.append(0)
 
