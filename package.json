@@ -1,0 +1,21 @@
+{
+    "dependencies": {
+        "npm-run-all": "^4.1.5"
+    },
+    "scripts": {
+        "start": "pyright && pytest && yarn style",
+        "test": "nodemon -w tests -w conc_nouns -x pytest tests",
+        "pyright": "nodemon -w conc_nouns -w .venv -e .py -x pyright conc_nouns tests",
+        "pytest": "nodemon -w tests -w conc_nouns -e .py -x pytest tests conc_nouns",
+        "style": "nodemon -w conc_nouns -w tests -x \"black tests conc_nouns && python -m flake8\"",
+        "docstyle": "nodemon -w conc_nouns -w tests -x pydocstyle --convention=google tests conc_nouns",
+        "pylint": "nodemon -w conc_nouns -e .py -x pylint conc_nouns",
+        "test:conc_nouns": "nodemon -w tests -e .py -x pytest -k conc_nouns tests",
+        "publish": "poetry build && poetry publish",
+        "black": "black tests conc_nouns",
+        "flake8": "flake8 tests conc_nouns",
+        "pflake8": "pflake8 tests conc_nouns",
+        "pep257": "pep257 tests conc_nouns",
+        "final": "run-s docstyle black flake8 pytest"
+    }
+}
