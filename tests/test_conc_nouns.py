@@ -15,3 +15,23 @@ def test_sanity():
         assert not conc_nouns()
     except Exception:
         assert True
+
+
+def test_conc_nouns1():
+    text = """The mountains and rivers are scenery, and life is
+        destined; no matter from a distance, miss each other.
+        A greeting is my wish; take care of  my body and be
+        healthy for a century."""
+    _ = conc_nouns(text)
+    _ = sum(_)
+
+    assert _ >= 3
+
+
+def test_conc_nouns2():
+    text = """"Have a seat in that chair with comfort and drink
+            some juice to soothe your thirst."""
+    _ = conc_nouns(text)
+
+    _ = sum(_)
+    assert _ >= 1
